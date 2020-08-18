@@ -20,8 +20,9 @@ namespace DecisionsSnowflake
     {
         public DataDescription[] InputData
         {
-            get { 
-                return new DataDescription[] 
+            get
+            {
+                return new DataDescription[]
                     {
                         new DataDescription(new DecisionsNativeType(typeof(string)), "Host"),
                         new DataDescription(new DecisionsNativeType(typeof(string)), "Account"),
@@ -31,17 +32,18 @@ namespace DecisionsSnowflake
                         new DataDescription(new DecisionsNativeType(typeof(string)), "Schema"),
                         new DataDescription(new DecisionsNativeType(typeof(string)), "Query")
                     };
-            
-                }
+
+            }
         }
         public override OutcomeScenarioData[] OutcomeScenarios
         {
-            get {
+            get
+            {
                 return new OutcomeScenarioData[]
                   {
-                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(Dictionary<string, object>)), "Result", true, true, false) })
+                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(DynamicDataRow)), "Result", true, true, false) })
                   };
-                }
+            }
         }
 
         public ResultData Run(StepStartData data)
@@ -54,20 +56,19 @@ namespace DecisionsSnowflake
             string database = (string)data.Data["Database"];
             string schema = (string)data.Data["Schema"];
             var result = QuerySnowFlake(query, host, account, username, password, database, schema);
-            
-            return new ResultData("Done", result);
+
+            return new ResultData("Done", new DataPair[] { new DataPair("Result", result) });
         }
 
-        
 
-        public Dictionary<string,object> QuerySnowFlake (string query, string host, string account, string username, string password, string database, string schema)
+
+        public DynamicDataRow[] QuerySnowFlake(string query, string host, string account, string username, string password, string database, string schema)
         {
-
-
             try
             {
                 // Defined for use as the output handler.
                 DataTable outputTable = new DataTable();
+                List<DynamicDataRow> dynamicRows = new List<DynamicDataRow>();
 
                 using (IDbConnection conn = new SnowflakeDbConnection())
                 {
@@ -98,7 +99,8 @@ namespace DecisionsSnowflake
                     // Read all resultset rows into outputTable.
                     while (reader.Read())
                     {
-                        DataRow row = outputTable.NewRow();
+                            DataRow row = outputTable.NewRow();
+
 
                         for (int i = 0; i < tableColumns; i++)
                         {
@@ -106,23 +108,24 @@ namespace DecisionsSnowflake
                         }
 
                         outputTable.Rows.Add(row);
+                        dynamicRows.Add(new DynamicDataRow(row));
                     }
                     conn.Close();
 
                 }
 
                 // Create the output result set back to Decisions.
-                Dictionary<string, object> resultData = new Dictionary<string, object>();
-                resultData.Add("Result", outputTable);
-                return resultData;
+                //Dictionary<string, object> resultData = new Dictionary<string, object>();
+                //resultData.Add("Result", LDR.ToArray());
+                return dynamicRows.ToArray();
             }
 
             catch (Exception ex2)
             {
-               
+
                 return null;
             }
         }
-	 
+
     }
 }
