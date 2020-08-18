@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Snowflake")]
+[assembly: AssemblyTitle("Runner")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Snowflake")]
-[assembly: AssemblyCopyright("Copyright © Decisions 2020")]
+[assembly: AssemblyCompany("Vagrant")]
+[assembly: AssemblyProduct("Runner")]
+[assembly: AssemblyCopyright("Copyright © Vagrant 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3fb68647-8a8a-482f-a348-435fdaba33e5")]
+[assembly: Guid("c395610b-fb43-4d6a-9894-0c5d23299cb2")]
 
 // Version information for an assembly consists of the following four values:
 //

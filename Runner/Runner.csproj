@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5026AFD-0A14-4E30-93A3-BCF713EFA8FE}</ProjectGuid>
+    <ProjectGuid>{C395610B-FB43-4D6A-9894-0C5D23299CB2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SnowFlakeRunner</RootNamespace>
-    <AssemblyName>SnowFlakeRunner</AssemblyName>
+    <RootNamespace>Runner</RootNamespace>
+    <AssemblyName>Runner</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DecisionsFramework">
-      <HintPath>..\..\..\Program Files\Decisions\Decisions Services Manager\bin\DecisionsFramework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Decisions\Decisions Services Manager\bin\DecisionsFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,9 +54,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Snowflake\Snowflake.csproj">
-      <Project>{3fb68647-8a8a-482f-a348-435fdaba33e5}</Project>
-      <Name>Snowflake</Name>
+    <ProjectReference Include="..\DecisionsSnowflake\DecisionsSnowflake.csproj">
+      <Project>{a5071ea8-a2ee-4638-b91f-c95f93c3d172}</Project>
+      <Name>DecisionsSnowflake</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

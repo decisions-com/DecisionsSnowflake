@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using DecisionsFramework;
 using DecisionsFramework.Design.ConfigurationStorage.Attributes;
 using DecisionsFramework.Design.Flow;
 using DecisionsFramework.Design.Flow.CoreSteps;
 using DecisionsFramework.Design.Flow.CoreSteps.StandardSteps;
 using DecisionsFramework.Design.Flow.Mapping;
+using DecisionsFramework.ServiceLayer.Services.ContextData;
 using Snowflake.Data.Client;
 
-namespace Snowflake
+namespace DecisionsSnowflake
 {
     [AutoRegisterStep("Run Query", "Integration/Snowflake")]
     [Writable]
@@ -37,7 +39,7 @@ namespace Snowflake
             get {
                 return new OutcomeScenarioData[]
                   {
-                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(DynamicDataRow)), "Result", true, true, false) })
+                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(Dictionary<string, object>)), "Result", true, true, false) })
                   };
                 }
         }
@@ -51,12 +53,14 @@ namespace Snowflake
             string password = (string)data.Data["Password"];
             string database = (string)data.Data["Database"];
             string schema = (string)data.Data["Schema"];
-            return QuerySnowFlake(query, host, account, username, password, database, schema);
+            var result = QuerySnowFlake(query, host, account, username, password, database, schema);
+            
+            return new ResultData("Done", result);
         }
 
         
 
-        public ResultData QuerySnowFlake (string query, string host, string account, string username, string password, string database, string schema)
+        public Dictionary<string,object> QuerySnowFlake (string query, string host, string account, string username, string password, string database, string schema)
         {
 
 
@@ -110,11 +114,12 @@ namespace Snowflake
                 // Create the output result set back to Decisions.
                 Dictionary<string, object> resultData = new Dictionary<string, object>();
                 resultData.Add("Result", outputTable);
-                return new ResultData("Done", resultData);
+                return resultData;
             }
 
             catch (Exception ex2)
             {
+               
                 return null;
             }
         }

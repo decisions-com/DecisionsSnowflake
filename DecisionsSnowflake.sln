@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionsSnowflake", "DecisionsSnowflake\DecisionsSnowflake.csproj", "{A5071EA8-A2EE-4638-B91F-C95F93C3D172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Runner\Runner.csproj", "{C395610B-FB43-4D6A-9894-0C5D23299CB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +16,10 @@ Global
 		{A5071EA8-A2EE-4638-B91F-C95F93C3D172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5071EA8-A2EE-4638-B91F-C95F93C3D172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5071EA8-A2EE-4638-B91F-C95F93C3D172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C395610B-FB43-4D6A-9894-0C5D23299CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C395610B-FB43-4D6A-9894-0C5D23299CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C395610B-FB43-4D6A-9894-0C5D23299CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C395610B-FB43-4D6A-9894-0C5D23299CB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
