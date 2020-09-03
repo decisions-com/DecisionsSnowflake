@@ -25,11 +25,11 @@ using Snowflake.Data.Client;
 
 
 
-namespace Snowflake
+namespace SnowflakeJson
 
 {
 
-    [AutoRegisterStep("Run Query", "Integration/Snowflake")]
+    [AutoRegisterStep("Run Query Return Json", "Integration/Snowflake")]
 
     [Writable]
 
@@ -81,7 +81,7 @@ namespace Snowflake
 
                   {
 
-                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(DynamicDataRow)), "Result", true, true, false) })
+                      new OutcomeScenarioData("Done", new DataDescription[] { new DataDescription(new DecisionsNativeType(typeof(string)), "Result", false, true, false) })
 
                   };
 
@@ -111,7 +111,7 @@ namespace Snowflake
 
             string warehouse = (string)data.Data["Warehouse"];
 
-            var result = new DecisionsSnowflake.Query().QuerySnowFlake(query, host, account, username, password, database, schema, warehouse);
+            var result = new DecisionsSnowflake.QueryRtnJson().QuerySnowFlake(query, host, account, username, password, database, schema, warehouse);
 
             return new ResultData("Done", new DataPair[] { new DataPair("Result", result) });
 
