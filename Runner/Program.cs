@@ -10,10 +10,12 @@ namespace Runner
     {
         static void Main(string[] args)
         {
-             var sut = new DecisionsSnowflake.SnowflakeIntegration();
+            var sut = new DecisionsSnowflake.QueryRtnJson().QuerySnowFlake("select * from MYTABLE", "epa11700.us-east-1.snowflakecomputing.com", "epa11700", "WEATHEB2", "22", "DEMO_DB", "PUBLIC", "COMPUTE_WH", "SYSADMIN");
+                
 
-            var result = sut.QuerySnowFlake("select * from json_weather_data_view where date_trunc('month',observation_time) = '2018-01-01' limit 10", "https://jba31166.us-east-1.snowflakecomputing.com",
-                "jba31166", "jonhallam", "bownem-wyXvix-3kovwy", "Weather", "public");
+            var sut2 = new DecisionsSnowflake.Query().QuerySnowFlake("select * from MYTABLE", "epa11700.us-east-1.snowflakecomputing.com", "epa11700", "WEATHEB2", "22", "DEMO_DB", "PUBLIC", "COMPUTE_WH", "SYSADMIN");
+               
+
         }
     }
 }

@@ -61,7 +61,11 @@ namespace Snowflake
 
                         new DataDescription(new DecisionsNativeType(typeof(string)), "Query"),
 
-                        new DataDescription(new DecisionsNativeType(typeof(string)), "Warehouse")
+                        new DataDescription(new DecisionsNativeType(typeof(string)), "Warehouse"),
+
+                        new DataDescription(new DecisionsNativeType(typeof(string)), "Role")
+
+                        
 
                     };
 
@@ -111,7 +115,9 @@ namespace Snowflake
 
             string warehouse = (string)data.Data["Warehouse"];
 
-            var result = new DecisionsSnowflake.Query().QuerySnowFlake(query, host, account, username, password, database, schema, warehouse);
+            string role = (string)data.Data["Role"];
+
+            var result = new DecisionsSnowflake.Query().QuerySnowFlake(query, host, account, username, password, database, schema, warehouse, role);
 
             return new ResultData("Done", new DataPair[] { new DataPair("Result", result) });
 

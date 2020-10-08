@@ -14,7 +14,7 @@ namespace DecisionsSnowflake
     {
         private IEnumerable<Dictionary<string, object>> rows;
 
-        public string QuerySnowFlake(string query, string host, string account, string username, string password, string database, string schema, string warehouse)
+        public string QuerySnowFlake(string query, string host, string account, string username, string password, string database, string schema, string warehouse, string role)
 
         {
 
@@ -46,7 +46,7 @@ namespace DecisionsSnowflake
 
                     // Create the connection string and connect to Snowflake instance.
 
-                    conn.ConnectionString = "host=" + host + ";account=" + account + ";user=" + username + ";password=" + password + ";db=" + database + ";schema=" + schema + ";warehouse=" + warehouse;
+                    conn.ConnectionString = "host=" + host + ";account=" + account + ";role=" + role + ";user=" + username + ";password=" + password + ";db=" + database + ";schema=" + schema + ";warehouse=" + warehouse;
 
                     conn.Open();
 
